@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
+        <h2>Text Editor</h2>
         <div class="mb-3">
             <textarea name="content" class="form-control my-editor"></textarea>
         </div>
@@ -32,6 +33,18 @@
           <input id="thumbnail2" class="form-control" type="text" name="filepath">
         </div>
         <div id="holder2" style="margin-top:15px;max-height:100px;"></div>
+
+        <div class="mt-5">
+          <ul>
+            @php 
+              $list = typeFileMime();
+            @endphp 
+            @forelse ($list as $item)
+                <li>{{$item}}</li>
+            @empty
+            @endforelse
+          </ul>
+        </div>
     </div>
 
     {{-- script --}}

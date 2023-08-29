@@ -170,6 +170,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
+        App\Providers\HelperServiceProvider::class,
     ])->toArray(),
 
     /*
