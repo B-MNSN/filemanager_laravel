@@ -130,6 +130,34 @@
 
           // trigger change event
           target_preview.dispatchEvent(new Event('change'));
+          
+          items.forEach(function (item) {
+              var xhr = new XMLHttpRequest();
+              xhr.open('HEAD', item.url, true);
+              xhr.onreadystatechange = function () {
+                  if (xhr.readyState === 4) {
+                      if (xhr.status === 200) {
+                          // var fileSize = xhr.getResponseHeader('Content-Length');
+                          // console.log('File size:', fileSize);
+                          var fileSizeInBytes = xhr.getResponseHeader('Content-Length');
+                          // Convert bytes to kilobytes (KB)
+                          var fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
+                          
+                          // Convert kilobytes to megabytes (MB)
+                          var fileSizeInMB = (fileSizeInKB / 1024).toFixed(2);
+                          
+                          console.log('File Size (bytes): ' + fileSizeInBytes);
+                          console.log('File Size (KB): ' + fileSizeInKB + ' KB');
+                          console.log('File Size (MB): ' + fileSizeInMB + ' MB');
+                          
+                          // ทำการดำเนินการต่อตามที่คุณต้องการ
+                      } else {
+                          console.error('Error getting file size:', xhr.statusText);
+                      }
+                  }
+              };
+              xhr.send();
+          });
         };
       });
     };
